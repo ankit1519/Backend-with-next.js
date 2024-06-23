@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import style from "../style.module.css";
 
 async function getUsers(){
     let data =await fetch("http://localhost:3000/api/users");
@@ -15,9 +15,10 @@ export default async function users(){
             <h1>Hii jsx</h1>
             {
                 users.map((item)=>(
-                    <div key={item.id}>
+                    <div key={item.id} className={style.ui}>
+                        <span><Link href={`users/${item.id}`}>{item.name}</Link></span>
                         
-                        <Link href={`users/${item.id}`}>{item.name}</Link>
+                        <span ><Link href={`users/${item.id}/update`}>Edit</Link></span>
                     </div>
                 ))
             }

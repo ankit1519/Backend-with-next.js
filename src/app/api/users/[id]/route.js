@@ -15,3 +15,18 @@ export async function GET(req,content){
     return NextResponse.json(userData,{status:200});
 }
 
+export async function PUT(req,content){
+    
+   let payload=await req.json();
+   let uid=content.params.id;
+
+   payload.id=uid;
+   console.log(payload);
+   console.log(uid);
+
+   if(!payload.id || !payload.name || !payload.email || !payload.age){
+    return NextResponse.json({result:"req data not valid",success:false},{status:400});
+   }
+
+   return NextResponse.json({result:payload,success:true},{status:200});
+}
